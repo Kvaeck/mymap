@@ -405,6 +405,7 @@ class MainWindow(QMainWindow):
 
         a_save = QAction("Save", self)
         a_save.triggered.connect(self.on_save)
+        a_save.setShortcut("Ctrl+S")
         tb.addAction(a_save)
 
         a_load = QAction("Load", self)
@@ -427,6 +428,8 @@ class MainWindow(QMainWindow):
         a_pdf = QAction("Export PDF", self)
         a_pdf.triggered.connect(self.on_export_pdf)
         tb.addAction(a_pdf)
+
+
 
     def on_add_node(self):
         pos = self.view.mapToScene(self.view.viewport().rect().center())
@@ -485,7 +488,7 @@ class MainWindow(QMainWindow):
 
 
     def on_save(self):
-        fn, _ = QFileDialog.getSaveFileName(self, "Save map", "", "MindMap JSON (*.mymap *.json)")
+        fn, _ = QFileDialog.getSaveFileName(self, "Save Map", "", "MindMap JSON (*.mymap *.json)")
         if not fn:
             return
         data = self.scene.to_json()
