@@ -376,6 +376,7 @@ class CanvasView(QGraphicsView):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.setStyleSheet("background-color: #E7ECF7;")
         self.setWindowTitle("MyMap — Milestone 1")
         self.scene = MindScene()
         self.view = CanvasView(self.scene)
