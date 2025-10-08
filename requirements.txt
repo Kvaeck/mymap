@@ -1,3 +1,7 @@
-PyQt5>=5.15
-pytest
-pytest-qt
+# runtime dependencies (minimal)
+PySide6>=6.2
+qt-material>=2.14
+requests
+
+# dev dependencies (not installed by default)
+-r requirements-dev.txt
