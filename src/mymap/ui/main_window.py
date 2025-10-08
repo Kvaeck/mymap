@@ -3,12 +3,10 @@ import json
 from PySide6.QtWidgets import (
     QMainWindow,
     QToolBar,
-    QAction,
     QFileDialog,
-    QShortcut,
     QStatusBar,
 )
-from PySide6.QtGui import QKeySequence, QUndoStack
+from PySide6.QtGui import QAction, QKeySequence, QUndoStack, QShortcut
 from PySide6.QtCore import QPointF
 
 from mymap.scene import MindScene
