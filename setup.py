@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name="mymap",
     version="0.1.0",
-    description="MyMap — mind mapping app",
+    description="MyMap — A Nusantaran Mind Mapping App",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
 )

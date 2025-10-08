@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: mymap
+Version: 0.1.0
+Summary: A mind mapping desktop app inspired by iMindMap 11, built with PySide6
+Author: Meraclo Julius Rizky
+License: MIT
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: PySide6>=6.2
+Requires-Dist: qt-material>=2.14
+Requires-Dist: requests
+Dynamic: license-file
+
+# MyMap 🧠
+
+MyMap is a modern, lightweight, and open mind mapping tool built with Python & PyQt.  
+It helps you visually organize ideas, brainstorm, and structure projects.  
+
+## Features (Milestone 0)
+- Basic PyQt app skeleton
+- Opens a blank window
+
+## Roadmap
+- Milestone 1: Basic node editor
+- Milestone 2: Connections & layout
+- Milestone 3: Styling & usability
+- Milestone 4: File & project management
+- Milestone 5: Productivity features
+- Milestone 6: Licensing & packaging
+- Milestone 7: Collaboration & cloud

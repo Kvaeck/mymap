@@ -1,0 +1,3 @@
+PySide6>=6.2
+qt-material>=2.14
+requests
