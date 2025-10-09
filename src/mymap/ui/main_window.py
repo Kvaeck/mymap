@@ -6,7 +6,7 @@ from PySide6.QtWidgets import (
     QFileDialog,
     QStatusBar,
 )
-from PySide6.QtGui import QAction, QKeySequence, QUndoStack, QShortcut
+from PySide6.QtGui import QAction, QKeySequence, QUndoStack, QShortcut, QFont
 from PySide6.QtCore import QPointF
 
 from mymap.scene import MindScene
@@ -27,7 +27,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setStyleSheet("background-color: #E7ECF7;")
-        self.setWindowTitle("MyMap — Milestone 1")
+        self.setWindowTitle("PePik")
         self.scene = MindScene()
         self.view = CanvasView(self.scene)
         self.setCentralWidget(self.view)
@@ -153,3 +153,28 @@ class MainWindow(QMainWindow):
         painter.begin(printer)
         self.scene.render(painter)
         painter.end()
+
+    # ---------------------------
+    # helper: create initial "Main Idea" node centered on the view
+    def create_initial_main_node(self):
+        # If there are already nodes, don't create another
+        existing_nodes = [it for it in self.scene.items() if isinstance(it, NodeItem)]
+        if existing_nodes:
+            return
+
+        center = self.view.mapToScene(self.view.viewport().rect().center())
+        # create a NodeItem with larger font and padding
+        node = NodeItem("Main Idea")
+        # enlarge font
+        f = node.text_item.font()
+        f.setPointSize(20)   # big and readable; adjust as you like (e.g., 18-24)
+        f.setBold(True)
+        node.text_item.setFont(f)
+        # increase padding for a more spacious look
+        node.padding = 14
+        self.scene.addItem(node)
+        node.setPos(center)
+        # ensure edges (none) updated & view recenters slightly
+        node.update()
+        self.view.centerOn(node)
+

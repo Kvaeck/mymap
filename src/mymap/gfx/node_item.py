@@ -4,7 +4,6 @@ from PySide6.QtWidgets import QGraphicsTextItem, QGraphicsObject, QGraphicsItem
 from PySide6.QtGui import QFont, QPainter, QBrush, QColor
 from PySide6.QtCore import QRectF, QPointF, Qt, Signal
 
-
 class EditableTextItem(QGraphicsTextItem):
     """A QGraphicsTextItem that records old/new text on focus changes."""
 
@@ -15,11 +14,30 @@ class EditableTextItem(QGraphicsTextItem):
 
     def focusInEvent(self, event):
         self._old_text = self.toPlainText()
+        # ensure fresh paint when editing starts
+        try:
+            self.update()
+            parent = self.parentItem()
+            if parent:
+                parent.update()
+        except Exception:
+            pass
         super().focusInEvent(event)
 
     def focusOutEvent(self, event):
         new_text = self.toPlainText()
         old = self._old_text
+        # ensure layout and repaint
+        try:
+            doc = self.document()
+            doc.adjustSize()
+            self.update()
+            parent = self.parentItem()
+            if parent:
+                parent.update()
+        except Exception:
+            pass
+
         if new_text != old and self.parentItem() is not None:
             parent = self.parentItem()
             if hasattr(parent, "commit_text_change"):
@@ -44,13 +62,20 @@ class NodeItem(QGraphicsObject):
         self.text_item.setPos(0, 0)
 
         self.padding = 8
-        self.bg_color = QColor(255, 255, 200)
+        self.bg_color = QColor(200, 250, 100)
 
         self.setFlags(
             QGraphicsItem.ItemIsMovable
             | QGraphicsItem.ItemIsSelectable
             | QGraphicsItem.ItemSendsGeometryChanges
         )
+        # disable caching to avoid pixelated cached pixmap artifacts while editing
+        try:
+            self.setCacheMode(QGraphicsItem.NoCache)
+        except Exception:
+            # some PySide builds may not expose enum; ignore if not available
+            pass
+
         self._drag_start_pos = QPointF()
         self.edges = []
 
@@ -104,3 +129,8 @@ class NodeItem(QGraphicsObject):
     def set_text(self, text):
         # set programmatically without triggering textChanged (user edits are handled via focusOut)
         self.text_item.setPlainText(text)
+        try:
+            self.text_item.document().adjustSize()
+            self.update()
+        except Exception:
+            pass
