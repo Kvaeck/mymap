@@ -16,19 +16,14 @@ python -m venv .venv
 source .venv/bin/activate
 Install the project in editable mode
 
-bash
-Copy code
 python -m pip install --upgrade pip setuptools wheel
 pip install -e .
 Install dev dependencies
 
-bash
-Copy code
 python -m pip install -r requirements.txt
 Run the app
 
-bash
-Copy code
+
 # runs the installed console entrypoint (editable mode)
 mymap
 
