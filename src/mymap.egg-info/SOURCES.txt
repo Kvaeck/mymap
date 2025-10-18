@@ -12,8 +12,14 @@ src/mymap.egg-info/dependency_links.txt
 src/mymap.egg-info/entry_points.txt
 src/mymap.egg-info/requires.txt
 src/mymap.egg-info/top_level.txt
+src/mymap/assets/logo.png
 src/mymap/commands/__init__.py
+src/mymap/commands/add_edge.py
 src/mymap/commands/add_node.py
+src/mymap/commands/delete_edge.py
+src/mymap/commands/delete_node.py
+src/mymap/commands/edit_text.py
+src/mymap/commands/move_node.py
 src/mymap/gfx/__init__.py
 src/mymap/gfx/canvas.py
 src/mymap/gfx/edge_item.py
@@ -29,5 +35,6 @@ src/mymap/services/__init__.py
 src/mymap/services/autosave.py
 src/mymap/ui/__init__.py
 src/mymap/ui/main_window.py
+src/mymap/ui/splash.py
 src/mymap/utils/__init__.py
 src/mymap/utils/geom.py

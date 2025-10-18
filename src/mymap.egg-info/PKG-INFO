@@ -12,20 +12,64 @@ Requires-Dist: qt-material>=2.14
 Requires-Dist: requests
 Dynamic: license-file
 
-# MyMap 🧠
+# MyMap
 
-MyMap is a modern, lightweight, and open mind mapping tool built with Python & PyQt.  
-It helps you visually organize ideas, brainstorm, and structure projects.  
+MyMap is a mind-mapping desktop application prototype built with Python + PySide6.
+This repository is organized with a modern `src/` layout for easy packaging and development.
 
-## Features (Milestone 0)
-- Basic PyQt app skeleton
-- Opens a blank window
+## Quickstart (developer)
 
-## Roadmap
-- Milestone 1: Basic node editor
-- Milestone 2: Connections & layout
-- Milestone 3: Styling & usability
-- Milestone 4: File & project management
-- Milestone 5: Productivity features
-- Milestone 6: Licensing & packaging
-- Milestone 7: Collaboration & cloud
+Requirements:
+- Python 3.9+ (pyproject requires >=3.9)
+- pip, virtualenv (recommended)
+- On macOS: Xcode Command Line Tools (`xcode-select --install`) may be required.
+
+1. Create and activate a virtual environment (recommended)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+Install the project in editable mode
+
+bash
+Copy code
+python -m pip install --upgrade pip setuptools wheel
+pip install -e .
+Install dev dependencies
+
+bash
+Copy code
+python -m pip install -r requirements.txt
+Run the app
+
+bash
+Copy code
+# runs the installed console entrypoint (editable mode)
+mymap
+
+# or run as a module (bypasses installed scripts)
+python -m mymap
+Project layout (high-level)
+bash
+Copy code
+src/mymap/             # main package
+  ├── app.py           # app entrypoint (run)
+  ├── __main__.py
+  ├── ui/              # main_window & UI widgets
+  ├── gfx/             # QGraphics items (Node/Edge/Canvas)
+  ├── scene/           # scene glue (MindScene)
+  ├── commands/        # undo/redo command implementations
+  ├── model/           # pure-Python data model (Graph/Node/Edge)
+  ├── io/              # persistence / import-export
+  └── services/        # autosave & background tasks
+tests/                  # unit & integration tests
+docs/                   # design docs & onboarding
+Development workflow
+Use feature branches named like feature/xyz or chore/xyz.
+
+Run tests with pytest.
+
+Use pre-commit hooks (if configured) before pushing.
+
+Contributing
+See docs/onboarding.md for a short dev onboarding guide and docs/architecture.md for overall design.
+
